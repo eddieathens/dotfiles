@@ -136,6 +136,10 @@ inoremap <c-p> <ESC>/%\u.\{-1,}%<cr>c/%/e<cr>
 " cd ~/.vim/bundle
 " git clone https://github.com/klen/python-mode
 "
+" for a particular version of python-mode
+" (this is the last one to use PyLint)
+" (later ones dont seem to work)
+" git checkout 0.6.19
 "
 " Set default pymode python options
 " this seems to turn on line numbers by default now
