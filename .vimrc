@@ -100,9 +100,12 @@ set undolevels=700
 
 
 " Real programmers don't use TABs but spaces
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+"set tabstop=4
+"set softtabstop=4
+"set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set shiftround
 set expandtab
 
@@ -141,10 +144,12 @@ inoremap <c-p> <ESC>/%\u.\{-1,}%<cr>c/%/e<cr>
 " (later ones dont seem to work)
 " git checkout 0.6.19
 "
+" debug
+let g:pymode_debug=1
+"
 " Set default pymode python options
 " this seems to turn on line numbers by default now
 let g:pymode_options = 0
-"
 "
 " Check code every save
 let g:pymode_lint_write = 0
@@ -155,10 +160,43 @@ let g:pymode_lint_on_write = 0
 " line too long
 let g:pymode_lint_ignore = "E501"
 
+" Convert from 4 to 2 space indent
+" change lines in ~.vim/bundle/python-mode/after/indent/python.vim
+" setlocal tabstop=2
+" setlocal softtabstop=2
+" setlocal shiftwidth=2
+"
 " Pylint configuration file
 " If file not found use 'pylintrc' from python-mode plugin directory
-let g:pymode_lint_config = "$HOME/.pylintrc"
-
+" seems to really use
+" ~/.vim/bundle/python-mode/pylint.ini as default
+"let g:pymode_lint_config = "/Users/johns/.vim/pylintrc"
+" Convert from 4 to 2 space indent in pylintrc like
+" [FORMAT]
+" # String used as indentation unit. This is usually " " (4 spaces) or "\t" (1
+" # tab).
+" indent-string='  '
+" # Maximum number of characters on a single line.
+" max-line-length=100
+"
+" ~/.vim/bundle/python-mode/pylibs/pylama/lint/pylama_pep8/pep8.py
+" must be modified to support 2 spaces instead of four
+" or exclude errors E111 and E121, they are checked by pylint
+"
+"375,376c375,376
+"<     if indent_char == ' ' and indent_level % 2:
+"<         yield 0, "E111 indentation is not a multiple of two"
+"---
+">     if indent_char == ' ' and indent_level % 4:
+">         yield 0, "E111 indentation is not a multiple of four"
+"496,497c496,497
+"<                 elif hang % 2:
+"<                     error = "E121", "indentation is not a multiple of two"
+"---
+">                 elif hang % 4:
+">                     error = "E121", "indentation is not a multiple of four"
+"
+"
 " installing command-t to search for files to open
 " cd ~/.vim
 " git clone git://git.wincent.com/command-t.git bundle/command-t
