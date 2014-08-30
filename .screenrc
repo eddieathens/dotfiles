@@ -40,10 +40,16 @@ hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{+bG} %H %{..Y} %m/%d %C%a "
 termcapinfo xterm|xterms|xs|rxvt ti@:te@
 
 # add some bindings to use arrow keys
+# test bindings using "cat >/dev/null" in terminal
+#
 # control + left; previous screen window
 bindkey ^[[1;5D prev
+# option + left; previous screen window for cathode
+bindkey ^[b next
 # control + right; next screen window
 bindkey ^[[1;5C next
+# option + right; next screen window for cathode
+bindkey ^[f next
 # control + up; previous split screen
 bindkey ^[[1;5A focus up
 # control + down; next split screen
@@ -62,10 +68,6 @@ bindkey ^[[1;5B focus down
 #
 ## end of code to add to .bash_profile ##########
 #
-#screen 0
-#select 0
-#exec $HOME/.ssh/screen-ssh-agent
-#exec true
 setenv SSH_AUTH_SOCK $HOME/.ssh/socket
 
 
