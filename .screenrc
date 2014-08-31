@@ -11,17 +11,24 @@
 
 
 # BEGINNING OF JOHNS LOCAL SETTINGS
-#kill startup message
-startup_message off
-
-# local scrollback is "C-t [" for vi mode
-# define a bigger scrollback, default is 100 lines
-defscrollback 24096
-
-
+#
 # THIS IS FROM PETER WOHLERS SCREENRC
 # lets replace ^a with ^t
 escape ^Tt
+
+#kill startup message
+startup_message off
+
+# define a bigger scrollback, default is 100 lines
+defscrollback 24096
+
+# local scrollback is "C-t [" for vi mode
+# this sets
+# shift-up and shift-down to look at scrollback buffer
+bindkey "^[[1;2A" eval "copy" "stuff ^u"
+bindkey -m "^[[1;2A" stuff ^u
+bindkey -m "^[[1;2B" stuff ^d
+
 
 # THIS IS FROM PETER WOHLERS SCREENRC
 # An alternative hardstatus to display a bar at the bottom listing the
@@ -37,6 +44,7 @@ hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{+bG} %H %{..Y} %m/%d %C%a "
 # following termcapinfo line which tells xterm to use the normal screen buffer
 # (which has scrollback), not the alternate screen buffer.
 #
+# btw, this usually doenst work 
 termcapinfo xterm|xterms|xs|rxvt ti@:te@
 
 # add some bindings to use arrow keys
