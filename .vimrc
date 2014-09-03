@@ -63,7 +63,10 @@ set showcmd
 " paste. At the bottom you should see ``-- INSERT (paste) --``.
 
 set pastetoggle=<F2>
-set clipboard=unnamed
+
+" this puts anything in unnamed buffer into star buffer
+" seems easier/better to just yank to star buffer if needed
+"set clipboard=unnamed
 
 
 " Mouse and backspace
@@ -171,6 +174,7 @@ let g:pymode_lint_ignore = "E501"
 " seems to really use
 " ~/.vim/bundle/python-mode/pylint.ini as default
 "let g:pymode_lint_config = "/Users/johns/.vim/pylintrc"
+let g:pymode_lint_config = "$HOME/workspace/ubiquity/pylintrc"
 " Convert from 4 to 2 space indent in pylintrc like
 " [FORMAT]
 " # String used as indentation unit. This is usually " " (4 spaces) or "\t" (1
