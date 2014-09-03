@@ -83,16 +83,16 @@ setenv SSH_AUTH_SOCK $HOME/.ssh/socket
 # needed to allow for keberos forwarding
 #
 ##### add this to .bash_profile ###############
-# Kerberos management for screen
-#if ( $?KRB5CCNAME ) then
-#    setenv KERB_SCREEN /tmp/krb5cc_${uid}_screen
-#    cp `echo $KRB5CCNAME | cut -d':' -f 2` $KERB_SCREEN
-#    if ( $?SCREEN ) then
-#        if ( $SCREEN == "on" ) then
-#            setenv KRB5CCNAME "FILE:$KERB_SCREEN"
-#        endif
-#    endif
-#endif
+# # Kerberos management for screen
+#if [[ ! -z ${USER} ]]; then
+#  KRB5CC_SCREEN=/tmp/krb5cc_${UID}_screen
+#  if [[ ! -z "${KRB5CCNAME}" && "${KRB5CCNAME#*:}" != "${KRB5CC_SCREEN}" ]]; then
+#    cp -p ${KRB5CCNAME#*:} ${KRB5CC_SCREEN}
+#  fi
+#  if [[ "${SCREEN}" == "ON" && -r ${KRB5CC_SCREEN} ]]; then
+#    export KRB5CCNAME="FILE:${KRB5CC_SCREEN}"
+#  fi
+#fi
 #
 ## end of code to add to .bash_profile ##########
 setenv SCREEN on
