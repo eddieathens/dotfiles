@@ -82,20 +82,18 @@ setenv SSH_AUTH_SOCK $HOME/.ssh/socket
 
 # needed to allow for keberos forwarding
 #
-##### add this to .bash_profile ###############
-# # Kerberos management for screen
-#if [[ ! -z ${USER} ]]; then
-#  KRB5CC_SCREEN=/tmp/krb5cc_${UID}_screen
-#  if [[ ! -z "${KRB5CCNAME}" && "${KRB5CCNAME#*:}" != "${KRB5CC_SCREEN}" ]]; then
-#    cp -p ${KRB5CCNAME#*:} ${KRB5CC_SCREEN}
-#  fi
-#  if [[ "${SCREEN}" == "ON" && -r ${KRB5CC_SCREEN} ]]; then
-#    export KRB5CCNAME="FILE:${KRB5CC_SCREEN}"
-#  fi
-#fi
+#### add this to .bash_profile to run at login ###
 #
+## this allows kerberos ticket forwarding in screen
+#if [[ ! -z ${KRB5CCNAME} ]]; then
+#  if [[ -h $HOME/.kerberos-ticket-cache ]]; then
+#    /bin/rm $HOME/.kerberos-ticket-cache
+#  fi
+#  /bin/ln -s ${KRB5CCNAME#*:} $HOME/.kerberos-ticket-cache
+#fi
 ## end of code to add to .bash_profile ##########
-setenv SCREEN ON
+#
+setenv KRB5CCNAME FILE:$HOME/.kerberos-ticket-cache
 
 
 # THIS ENDS JOHNS LOCAL SCREENRC
