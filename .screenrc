@@ -84,11 +84,12 @@ setenv SSH_AUTH_SOCK $HOME/.ssh/socket
 #
 #### add this to .bash_profile to run at login ###
 #
-## this allows kerberos ticket forwarding in screen
 #if [[ ! -z ${KRB5CCNAME} ]]; then
-#  if [[ -h $HOME/.kerberos-ticket-cache ]]; then
+#  # remove link if its a link, remove file if local kinit had been run
+#  if [[ -h $HOME/.kerberos-ticket-cache || -f $HOME/.kerberos-ticket-cache ]]; then
 #    /bin/rm $HOME/.kerberos-ticket-cache
 #  fi
+#  # link forwarded cache to a permanent name for screen use
 #  /bin/ln -s ${KRB5CCNAME#*:} $HOME/.kerberos-ticket-cache
 #fi
 ## end of code to add to .bash_profile ##########
