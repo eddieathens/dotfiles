@@ -23,11 +23,15 @@
 "  sudo port install ruby
 "  sudo port install vim +ruby20 +python27
 "
-" check ruby version using
+" check vim ruby version using
 " :ruby puts "#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}"
+" check sys ruby version using
+" "ruby -v"
 "
-" check python version using
+" check vim python version using
 " :python import sys; print(sys.version)
+" check sys python version using
+" python -c "import sys; print(sys.version)"
 "##############################################
 "
 "## may need this for PyLint
